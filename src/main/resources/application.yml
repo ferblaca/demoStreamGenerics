@@ -1,0 +1,76 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /demo-stream-kafka
+logging:
+  level:
+    root: ERROR
+    com.example.demoStreamKafka.consumer: INFO
+spring:
+  docker:
+    compose:
+      skip:
+        in-tests: false
+      file: "file:@project.basedir@/src/main/resources/compose/docker-compose.yml"
+      lifecycle-management: start-and-stop
+  kafka:
+    bootstrap-servers: localhost:9092
+  cloud:
+    function:
+      definition: productConsumer_OK;productConsumer_KO;productBatchConsumer_OK;productBatchConsumer_KO
+    stream:
+#      binders:
+#        kafka1:
+#          type: kafka
+#          environment:
+#            spring:
+#              cloud:
+#                stream:
+#                  kafka:
+#                    binder:
+#                      brokers: ${spring.kafka.bootstrap-servers}
+#                      producer-properties.key.serializer: org.apache.kafka.common.serialization.StringSerializer
+#        kafka2:
+#          type: kafka
+#          environment:
+#            spring:
+#              cloud:
+#                stream:
+#                  kafka:
+#                    binder:
+#                      brokers: ${spring.kafka.bootstrap-servers}
+#                      producer-properties.key.serializer: org.apache.kafka.common.serialization.StringSerializer
+      output-bindings: foo-out-0
+      bindings:
+        productConsumer_OK-in-0:
+          group: my-group-simple
+          destination: input-topic
+        productConsumer_KO-in-0:
+          group: my-group-complete
+          destination: input-topic
+        productBatchConsumer_OK-in-0:
+          group: my-group-product
+          destination: input-topic
+          consumer:
+            batch-mode: true
+        productBatchConsumer_KO-in-0:
+          group: my-group-product-batch
+          destination: input-topic
+          consumer:
+            batch-mode: true
+        foo-out-0:
+          destination: input-topic
+          content-type: application/json
+demo:
+  jackson:
+    mapper:
+      enabled: false
+
+management:
+  health:
+    binders:
+      enabled: true
+  endpoint:
+    health:
+      show-details: ALWAYS
+
