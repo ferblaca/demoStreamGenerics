@@ -19,27 +19,6 @@ spring:
     function:
       definition: productConsumer_OK;productConsumer_KO;productBatchConsumer_OK;productBatchConsumer_KO
     stream:
-#      binders:
-#        kafka1:
-#          type: kafka
-#          environment:
-#            spring:
-#              cloud:
-#                stream:
-#                  kafka:
-#                    binder:
-#                      brokers: ${spring.kafka.bootstrap-servers}
-#                      producer-properties.key.serializer: org.apache.kafka.common.serialization.StringSerializer
-#        kafka2:
-#          type: kafka
-#          environment:
-#            spring:
-#              cloud:
-#                stream:
-#                  kafka:
-#                    binder:
-#                      brokers: ${spring.kafka.bootstrap-servers}
-#                      producer-properties.key.serializer: org.apache.kafka.common.serialization.StringSerializer
       output-bindings: foo-out-0
       bindings:
         productConsumer_OK-in-0:
@@ -61,10 +40,6 @@ spring:
         foo-out-0:
           destination: input-topic
           content-type: application/json
-demo:
-  jackson:
-    mapper:
-      enabled: false
 
 management:
   health:
