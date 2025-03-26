@@ -31,7 +31,7 @@ public class DemoStreamKafkaApplication {
         };
     }
 
-    @Bean
+//    @Bean
     public ApplicationRunner runner2(StreamBridge streamBridge) {
         return args -> {
             // send a message

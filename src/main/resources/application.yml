@@ -4,7 +4,7 @@ server:
     context-path: /demo-stream-kafka
 logging:
   level:
-    root: ERROR
+    root: INFO
     com.example.demoStreamKafka.consumer: INFO
 spring:
   docker:
@@ -19,6 +19,11 @@ spring:
     function:
       definition: productConsumer_OK;productConsumer_KO;productBatchConsumer_OK;productBatchConsumer_KO
     stream:
+      kafka:
+        bindings:
+          foo-out-0:
+            producer:
+              message-key-expression: headers['kafka_receivedMessageKey']
       output-bindings: foo-out-0
       bindings:
         productConsumer_OK-in-0:
@@ -41,6 +46,7 @@ spring:
           destination: input-topic
           content-type: application/json
 
+
 management:
   health:
     binders:
@@ -48,4 +54,7 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-
+  endpoints:
+    web:
+      exposure:
+        include: "*"
