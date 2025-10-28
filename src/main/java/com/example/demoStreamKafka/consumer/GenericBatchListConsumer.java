@@ -7,13 +7,13 @@ import org.springframework.messaging.Message;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class GebericBatchConsumer<T> implements Consumer<Message<List<T>>> {
+public class GebericBatchListConsumer<T> implements Consumer<List<T>> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GebericBatchConsumer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GebericBatchListConsumer.class);
 
     private final String name;
 
-    public GebericBatchConsumer(String name) {
+    public GebericBatchListConsumer(String name) {
         this.name = name;
     }
 
@@ -23,7 +23,7 @@ public class GebericBatchConsumer<T> implements Consumer<Message<List<T>>> {
      * @param listMessage the input argument
      */
     @Override
-    public void accept(Message<List<T>> listMessage) {
-        LOG.info("Received Batch {} Consumer: {}", this.name, listMessage.getPayload());
+    public void accept(List<T> listMessage) {
+        LOG.info("Received Batch List {} Consumer: {}", this.name, listMessage);
     }
 }
