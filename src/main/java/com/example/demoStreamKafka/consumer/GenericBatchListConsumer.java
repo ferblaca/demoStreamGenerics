@@ -2,18 +2,17 @@ package com.example.demoStreamKafka.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.messaging.Message;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public class GebericBatchListConsumer<T> implements Consumer<List<T>> {
+public class GenericBatchListConsumer<T> implements Consumer<List<T>> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GebericBatchListConsumer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GenericBatchListConsumer.class);
 
     private final String name;
 
-    public GebericBatchListConsumer(String name) {
+    public GenericBatchListConsumer(String name) {
         this.name = name;
     }
 

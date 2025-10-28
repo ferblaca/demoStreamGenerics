@@ -17,26 +17,43 @@ spring:
     bootstrap-servers: localhost:9092
   cloud:
     function:
-      definition: productConsumer_OK;productConsumer_KO;productBatchConsumer_OK;productBatchConsumer_KO
+      definition: productConsumer;productConsumer2;productMessageConsumer:productMessageConsumer2;productBatchListConsumer;productBatchListConsumer2;productBatchListMessageConsumer;productBatchListMessageConsumer2
     stream:
       output-bindings: foo-out-0
       bindings:
-        productConsumer_OK-in-0:
-          group: my-group-simple
+        # single record consumers
+        productConsumer-in-0:
+          group: my-group-productConsumer
           destination: input-topic
-        productConsumer_KO-in-0:
-          group: my-group-complete
+        productConsumer2-in-0:
+          group: my-group-productConsumer2
           destination: input-topic
-        productBatchConsumer_OK-in-0:
-          group: my-group-product
+        productMessageConsumer-in-0:
+          group: my-group-productMessageConsumer
+          destination: input-topic
+        productMessageConsumer2-in-0:
+          group: my-group-productMessageConsumer2
+          destination: input-topic
+        productBatchListConsumer-in-0:
+          group: my-group-productBatchListConsumer
+          destination: input-topic
+        # batch consumers
+        productBatchListConsumer2-in-0:
+          group: my-group-productBatchListConsumer2
           destination: input-topic
           consumer:
             batch-mode: true
-        productBatchConsumer_KO-in-0:
-          group: my-group-product-batch
+        productBatchListMessageConsumer-in-0:
+          group: my-group-productBatchListMessageConsumer
           destination: input-topic
           consumer:
             batch-mode: true
+        productBatchListMessageConsumer2-in-0:
+          group: my-group-productBatchListMessageConsumer2
+          destination: input-topic
+          consumer:
+            batch-mode: true
+        # output binding
         foo-out-0:
           destination: input-topic
           content-type: application/json

@@ -7,13 +7,13 @@ import org.springframework.messaging.Message;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class GebericBatchMessageListConsumer<T> implements Consumer<Message<List<T>>> {
+public class GenericBatchMessageListConsumer<T> implements Consumer<Message<List<T>>> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GebericBatchMessageListConsumer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GenericBatchMessageListConsumer.class);
 
     private final String name;
 
-    public GebericBatchMessageListConsumer(String name) {
+    public GenericBatchMessageListConsumer(String name) {
         this.name = name;
     }
 
