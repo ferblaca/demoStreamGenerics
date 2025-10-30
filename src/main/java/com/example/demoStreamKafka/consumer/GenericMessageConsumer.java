@@ -18,6 +18,6 @@ public class GenericMessageConsumer<T> implements Consumer<Message<T>> {
 
 	@Override
 	public void accept(Message<T> message) {
-		LOG.info("Received Message {} Consumer: {}", this.name, message);
+		LOG.info("[OK] Received Message {} Consumer: {}", this.name, message);
 	}
 }

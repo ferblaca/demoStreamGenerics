@@ -17,7 +17,7 @@ spring:
     bootstrap-servers: localhost:9092
   cloud:
     function:
-      definition: productConsumer;productConsumer2;productMessageConsumer:productMessageConsumer2;productBatchListConsumer;productBatchListConsumer2;productBatchListMessageConsumer;productBatchListMessageConsumer2
+      definition: productConsumer;productConsumer2;productMessageConsumer;productMessageConsumer2;productBatchListConsumer;productBatchListConsumer2;productBatchListMessageConsumer;productBatchListMessageConsumer2
     stream:
       output-bindings: foo-out-0
       bindings:
@@ -57,7 +57,6 @@ spring:
         foo-out-0:
           destination: input-topic
           content-type: application/json
-
 management:
   health:
     binders:

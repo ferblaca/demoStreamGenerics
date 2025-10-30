@@ -7,16 +7,16 @@ import java.util.function.Consumer;
 
 public class GenericConsumer<T> implements Consumer<T> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GenericConsumer.class);
+	private static final Logger LOG = LoggerFactory.getLogger(GenericConsumer.class);
 
-    private final String name;
+	private final String name;
 
-    public GenericConsumer(String name) {
-        this.name = name;
-    }
+	public GenericConsumer(String name) {
+		this.name = name;
+	}
 
-    @Override
-    public void accept(T message) {
-        LOG.info("Received {} Consumer: {}", this.name, message);
-    }
+	@Override
+	public void accept(T message) {
+		LOG.info("[OK] Received {} Consumer: {}", this.name, message);
+	}
 }
